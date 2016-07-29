@@ -1,1 +1,1 @@
-export class Results {}
+export { Results } from './results.component';

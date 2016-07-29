@@ -30,9 +30,10 @@ app.use('/assets', express.static(path.join(__dirname, 'assets'), {maxAge: 30}))
 app.use(express.static(path.join(ROOT, 'dist/client'), {index: false}));
 
 
-import { serverApi } from './backend/api';
+import { getOptions, castVote } from './backend/api';
 // Our API for demos only
-app.get('/data.json', serverApi);
+app.get('/data/options', getOptions);
+app.post('/data/options/vote/:beerId', castVote)
 
 import { ngApp } from './main.node';
 // Routes with html5pushstate
@@ -42,6 +43,7 @@ app.get('/results', ngApp);
 app.get('/results/*', ngApp);
 app.get('/vote', ngApp);
 app.get('/vote/*', ngApp);
+app.get('/about', ngApp);
 
 // use indexFile over ngApp only when there is too much load on the server
 function indexFile(req, res) {

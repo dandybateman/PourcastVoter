@@ -3,8 +3,6 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
 import { Http } from '@angular/http';
 import { Header } from './common/header/header.component';
 
-// templateUrl example
-import { Home } from './home';
 //
 /////////////////////////
 // ** Example Directive
@@ -44,26 +42,7 @@ export class About { }
   template: `
   <vote-header></vote-header>
   <router-outlet></router-outlet>
-  `
+  `,
+  styles: [':host { font-family: Arial, Helvetica, sans-serif; }']
 })
-export class App {
-  title: string = 'ftw';
-  data = {};
-  server: string;
-
-  constructor(public http: Http) { }
-
-  ngOnInit() {
-    // limit the use of setTimeouts
-    setTimeout(() => {
-      this.server = 'This was rendered from the server!';
-    }, 10);
-
-    // use services for http calls
-    this.http.get('/data.json')
-      .subscribe(res => {
-        this.data = res.json();
-      });
-  }
-
-}
+export class App { }

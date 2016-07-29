@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
+import { ROUTER_DIRECTIVES} from '@angular/router';
 
 @Component({
   moduleId: __filename,
   selector: 'vote-header',
-  styles:[],
+  directives: [ROUTER_DIRECTIVES],
+  styles:['li { list-style: none; display: inline-block; margin: 0.5em; }'],
   template: `
     <nav>
         <ul>
-            <li *ngFor="let item of items"><a href="/{{item.url}}">{{item.title}}</a></li> 
+            <li *ngFor="let item of items"><a routerLink="{{item.url}}" routerLinkActive="active">{{item.title}}</a></li> 
         </ul>
     </nav>
   `
@@ -17,12 +19,16 @@ export class Header {
     constructor(){
         this.items = [
             {
-                url:'vote',
-                title: 'vote'
+                url:'/vote',
+                title: 'Vote'
             },
             {
-                url:'results',
-                title: 'results'
+                url:'/results',
+                title: 'Results'
+            },
+            {
+                url: '/about',
+                title: 'About'
             }
         ]
     }
