@@ -1,6 +1,7 @@
 import { Component, Input, OnInit }from '@angular/core';
 import { Option } from '../../../lib/option'
 import { BeerDescription } from '../../common/beerDescription';
+import { MD_CARD_DIRECTIVES } from '@angular2-material/card';
 
 @Component({
     selector: 'result-item',
@@ -15,33 +16,35 @@ import { BeerDescription } from '../../common/beerDescription';
         '.votes.high { background-color: green }',
     ],
     template: `
-        <div>
-            <h3><a href="{{item.url}}">{{ item.beer }}</a></h3>
+        <md-card>
+            <md-card-title>
+                <h3><a href="{{item.url}}">{{ item.beer }}</a></h3>
+            </md-card-title>
             <beer-description [beer]="item"></beer-description>
             <p class="votes {{percentageClass}}">Votes: {{ item.voteCount || 0 }} ({{percentage}}%)</p>
-        </div>
+        </md-card>
     `,
-    directives: [BeerDescription]
+    directives: [BeerDescription, MD_CARD_DIRECTIVES]
 })
 export class ResultItem implements OnInit {
     @Input() item: any;
     @Input() totalVotes: number;
     percentage: number;
     percentageClass: string;
-    constructor(){
+    constructor() {
     }
 
     ngOnInit() {
-        this.percentage = Math.round(((this.item.voteCount || 0) / (this.totalVotes || 1))*100)
+        this.percentage = Math.round(((this.item.voteCount || 0) / (this.totalVotes || 1)) * 100)
         this.percentageClass = percentageToClass(this.percentage);
     }
 }
 
-function percentageToClass(percent: number):string{
-    let result:string;
-    if(percent < 25){
+function percentageToClass(percent: number): string {
+    let result: string;
+    if (percent < 25) {
         result = 'low'
-    } else if (percent < 75){
+    } else if (percent < 75) {
         result = 'medium';
     } else {
         result = 'high';
