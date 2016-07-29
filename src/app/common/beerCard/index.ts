@@ -1,0 +1,1 @@
+export { BeerCard } from './beerCard.component';

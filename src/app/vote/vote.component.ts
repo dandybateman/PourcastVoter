@@ -6,12 +6,24 @@ import { ValidTerm } from '../common/itemFilter.pipe'
 
 
 @Component({
-  moduleId: __filename,
   selector: 'vote',
-  styleUrls: [
-    'vote.style.css'
+  styles: [
+    ':host { font-family: Arial, Helvetica, sans-serif; }',
+    '.items { display: flex; flex-direction: row; flex-wrap: wrap; }',
+    'vote-item { display: flex;  }',
+    'input { display: inline-block; }'
   ],
-  templateUrl: 'vote.template.html',
+  // styleUrls: [ 'vote.style.css'],
+  // templateUrl: 'vote.template.html',
+  template: `
+  <div class="search">
+    <label for="searchField">Search: </label>
+    <input id="searchField" type="text" #box (keyup)="onKeyUp(box.value)" />
+  </div>
+  <div class="items">
+      <vote-item *ngFor="let option of options | validTerm: term ;trackBy:trackOption" [item]="option" (vote)="itemVoted($event)"></vote-item>
+  </div>
+  `,
   directives: [VoteItem],
   providers: [VoteService],
   pipes: [ ValidTerm ]

@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { ROUTER_DIRECTIVES} from '@angular/router';
 
 @Component({
-  moduleId: __filename,
   selector: 'vote-header',
   directives: [ROUTER_DIRECTIVES],
   styles:['li { list-style: none; display: inline-block; margin: 0.5em; }'],
