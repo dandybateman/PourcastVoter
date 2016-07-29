@@ -1,0 +1,7 @@
+<div class="search">
+    <label for="searchField">Search: </label>
+    <input id="searchField" type="text" #box (keyup)="onKeyUp(box.value)" />
+</div>
+<div class="items">
+    <vote-item *ngFor="let option of options | validTerm: term ;trackBy:trackOption" [item]="option" (vote)="itemVoted($event)"></vote-item>
+</div>

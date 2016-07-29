@@ -1,10 +1,13 @@
 import { RouterConfig } from '@angular/router';
-import { Home } from './home';
-import { About } from './app.component';
+import { Vote } from './vote';
+import { Results } from './results';
+import { About } from './about';
 
-export const routes: RouterConfig = [
-  { path: '', redirectTo: 'home' },
-  { path: 'home', component: Home },
+
+export const routes : RouterConfig = [
+  { path: '', redirectTo: 'vote' },
+  { path: 'vote', component: Vote },
+  { path: 'results', component: Results },
   { path: 'about', component: About },
-  { path: '**', redirectTo: 'home' }
+  { path: '**', redirectTo: 'vote' }
 ];
